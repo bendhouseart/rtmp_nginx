@@ -37,6 +37,10 @@ output "ip" {
   value = aws_instance.streaming_server.public_ip
 }
 
-output "streaming_url" {
-  value = "${var.url_front}${aws_instance.streaming_server.public_ip}${var.url_end}"
+output "OBS_streaming_url_broadcast_to" {
+  value = "${var.url_front}${aws_instance.streaming_server.public_ip}${var.url_broadcast_to}"
+}
+
+output "VLC_url_stream_to_receieve" {
+  value = "${var.url_front}${aws_instance.streaming_server.public_ip}${var.url_broadcast_to}${var.url_stream}"
 }

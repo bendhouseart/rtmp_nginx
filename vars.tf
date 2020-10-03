@@ -20,6 +20,10 @@ variable "url_front" {
     default = "rtmp://"
 }
 
-variable "url_end" {
-    default = "/live/test"
+variable "url_broadcast_to" {
+    default = "/live"
+}
+
+variable "url_stream" {
+    default = "/test"
 }

@@ -16,6 +16,8 @@ Feel free to use.
 ## Requirements
 - Terraform > 12
 - An AWS account
+- [Open Broadcaster Software](https://obsproject.com/) - for streaming to server
+- [VideoLAN VLC media player](https://www.videolan.org/vlc/index.html) - for streaming from server to local pc.
 
 ## Setup
 ```
@@ -25,8 +27,19 @@ echo 'MY_IP = "<your ip address>/32"' >> terraform.tfvars
 echo 'AWS_REGION = "<your aws region>"' >> terraform.tfvars
 echo 'AMI = "<ami image for your region>"' >> terarform.tfvars
 
+ssh-keygen -t rsa -f mykey
+
 terraform apply
+...
+...
+...
 ```
+
+
+
+## Sources and Additional Info
+Server was setup using guide from obsproject.com written by dodgepong:
+[Guide](https://obsproject.com/forum/resources/how-to-set-up-your-own-private-rtmp-server-using-nginx.50/)
 
 
 
