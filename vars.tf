@@ -11,3 +11,15 @@ variable "AMI" {
 variable "MY_IP" {
     default = ""
 }
+
+variable "public_key" {
+    default = "mykey.pub"
+}
+
+variable "url_front" {
+    default = "rtmp://"
+}
+
+variable "url_end" {
+    default = "/live/test"
+}

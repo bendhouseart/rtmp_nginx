@@ -1,13 +1,15 @@
+#! /bin/bash
+
 # update apt repos
-apt-get update
+sudo apt-get --yes update 
 # install dependencies
-apt-get install build-essential libpcre3 libpcre3-dev libssl-dev wget unzip curl
+sudo apt-get --yes install build-essential libpcre3 libpcre3-dev libssl-dev wget unzip curl -y
 
 # collect nginx
-wget http://nginx.org/download/nginx-1.15.1.tar.gz
+sudo wget http://nginx.org/download/nginx-1.15.1.tar.gz
 
 # collect rtmp module for nginx
-wget https://github.com/sergey-dryabzhinsky/nginx-rtmp-module/archive/dev.zip
+sudo wget https://github.com/sergey-dryabzhinsky/nginx-rtmp-module/archive/dev.zip
 
 # unzip and untar packages
 tar -zxvf nginx-1.15.1.tar.gz
@@ -15,9 +17,9 @@ unzip dev.zip
 
 # install nginx and add module
 cd nginx-1.15.1
-./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-dev
-make
-make install
+sudo ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-dev
+sudo make
+sudo make install
 
 
 # add rtmp config to server
@@ -32,7 +34,8 @@ echo "rtmp {
                 }
         }
 }
-" >> /usr/local/nginx/conf/nginx.conf
+" | sudo tee -a /usr/local/nginx/conf/nginx.conf
 # start server
+echo "Starting Server"
 sudo /usr/local/nginx/sbin/nginx
 

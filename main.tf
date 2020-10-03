@@ -13,12 +13,30 @@ resource "aws_instance" "streaming_server" {
   //provisioner "local-exec" {
     //command = "echo ${aws_instance.example.private_ip} >> private_ips.txt"
   //}
+  user_data = file("user-data.sh")
+  key_name = aws_key_pair.ubuntu.key_name
+
+  connection {
+    type = "ssh"
+    user = "ubuntu"
+    private_key = file("mykey")
+    host = self.public_ip
+  }
 
   tags = {
     Name = "streaming_server"
   }
 }
 
+resource "aws_key_pair" "ubuntu" {
+  key_name = "ubuntu"
+  public_key = file(var.public_key)
+}
+
 output "ip" {
   value = aws_instance.streaming_server.public_ip
+}
+
+output "streaming_url" {
+  value = "${var.url_front}${aws_instance.streaming_server.public_ip}${var.url_end}"
 }
